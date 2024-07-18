@@ -1,0 +1,12 @@
+*.pyc
+.DS_Store
+.env
+.vscode
+__pycache__
+pdflatex
+*.aux
+*.log
+*.out
+*.pdf
+*.synctex.gz
+TAMBURRO*.tex

@@ -1,0 +1,141 @@
+{
+    "personal_details": {
+        "name": "Marco",
+        "surname": "Tamburro",
+        "default_long_title":"ECB Data Science Analyst, Part III Math Graduate, Data Enthusiast", 
+        "enthusiastic_about":[
+            {"value": "Data Enthusiast", "label": "Data"},
+            {"value": "Finance Enthusiast", "label": "Finance"},
+            {"value": "Statistics Enthusiast", "label": "Statistics"}
+        ], 
+        "title_fstring":"ECB {title}, Part III Math Graduate, {topic}",
+        "layout_subtitle":{
+            "r": ["c1"],
+            "c1": ["email", "phonenumber", "city"],
+            "c2": ["linkedinprofile", "githubprofile"]
+        },
+        "subtitle_info": {
+            "phonenumber": {
+                "value":"+39 3299478802",
+                "symbol":"\\faMobile"
+            },
+            "email": {
+                "value":"marcotamburro96@gmail.com",
+                "symbol":"\\faEnvelope",
+                "href": "mailto:marcotamburro96@gmail.com"
+            },
+            "city": {
+                "value":"Frankfurt am Main, DE",
+                "symbol":"\\faHome"
+            },
+            "githubprofile": {
+                "value": "github.com/MarcoTamb",
+                "symbol":"\\faGithub",
+                "href": "https://github.com/MarcoTamb"
+            },
+            "linkedinprofile": {
+                "value":"in/marco-tamburro",
+                "symbol":"\\faLinkedin",
+                "href": "https://www.linkedin.com/in/marco-tamburro"
+            }
+        }
+    },
+    "experience": {
+        "ECB":{
+            "personalize": true,
+            "job_titles":[
+                "Data Science Analyst",
+                "Data Science Research Analyst",
+                "Data Science/Research Analyst",
+                "Research Analyst",
+                "Statistician"
+            ],
+            "start_date":"09/2022",
+            "end_date":"Present",
+            "employer":[
+                "European Central Bank",
+                "European Central Bank - DG Statistics"
+            ],
+            "city":"Frankfurt am Main, DE",
+            "description_long":"ecb.txt",
+            "href": "https://www.ecb.europa.eu/"
+            },
+        "Avatr":{
+            "personalize": false,
+            "job_titles":[
+                "Trend Forecasting Intern",
+                "Machine Learning Intern"
+            ],
+            "start_date":"08/2020",
+            "end_date":"09/2020",
+            "employer":["Avatr Srl", "Innova EU"],
+            "city":"Rome, RM",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, label={\\textbullet}]\n\\item Implementing Machine Learning models for biological data time series forecasting and analysis\n\\end{itemize}",
+            "href": "https://www.f6s.com/company/avatrsrl"
+        }
+    },
+    "education": {
+        "cambridge":{
+            "personalize": false,
+            "title":"MASt in Pure Mathematics",
+            "start_date":"2017",
+            "end_date":"2018",
+            "university":"University of Cambridge",
+            "city":"Cambridge, UK",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, label={\\textbullet}]\n\\item Also known as \\href{https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos}{Part III of the Mathematical Tripos}.\n\\item Entry requirement is a 1st (or equivalent highest mark) from a good university, around 5 applicants for each student admitted.\n\\end{itemize}",
+            "href": "https://www.maths.cam.ac.uk/"
+        },
+        "torv":{
+            "personalize": false,
+            "title":"MSc in Pure and Applied Mathematics",
+            "start_date":"2022",
+            "end_date":"2024",
+            "university":"\\href{https://web.uniroma2.it/}{Università di Roma - Tor Vergata}/\\href{https://en.unipv.it/en}{Pavia}",
+            "city":"Rome/Pavia, IT",
+            "description_fixed":""
+        },
+        "iuss":{
+            "personalize": false,
+            "title":"\"Corsi Ordinari\" Honours Course",
+            "start_date":"2014",
+            "end_date":"2017",
+            "university":"IUSS Pavia",
+            "city":"Pavia, IT",
+            "description_fixed":"",
+            "href": "https://www.iusspavia.it/en"
+        },
+        "unipv":{
+            "personalize": false,
+            "title":"BSc Mathematics",
+            "start_date":"2014",
+            "end_date":"2017",
+            "university":"Università degli Studi di Pavia",
+            "city":"Pavia, IT",
+            "description_fixed":"",
+            "href": "https://en.unipv.it/en"
+        }
+    },
+    "awards": {
+        "award1":"\\textbf{Start-up project} Between end of 2020 and early 2021 I invested a few months to work on a early-stage start-up idea with a Rome-based business accelerator",
+        "award2":"\\textbf{INdAM Scholarship}, assigned through a national competition",
+        "award3":"\\textbf{IUSS Scholarship}, 1st in the admission competition",
+        "award4":"Student at \\textbf{Collegio Ghislieri}, 2nd in the admission competition  (room and board scholarship)",
+        "award5":"Former \\href{http://olimpiadi.dm.unibo.it/}{\\textbf{National Math Olympiads}} contestant (2x silver, 1x bronze)"
+    },
+    "skills": {
+        "Programming":["Python", "R", "Matlab", "C", "C++", "Julia", "Object Oriented Programming", "Algorithms", "Git (GitLab)", "Jira", "Agile"],
+        "Data Science":["Pandas", "SQL", "scikit-learn", "TensorFlow", "numpy", "scipy"],
+        "Data Visualization":["Plotly Dash", "Holoviz/Panels", "Streamlit", "Jupyter", "ipywidgets", "R Markdown", "HTML", "CSS"],
+        "Other IT":["Scripting in Microsoft Windows and Linux", "networking 101", "Docker 101"],
+        "Software":["Microsoft Office suite (including Word, Excel, Powerpoint)"],
+        "Languages":["Italian (Native)", "English (Bilingual/C2 CEFR)", "Spanish (Elementary - learning)"]
+    },
+    "code_samples": {
+        "BradyseismMonitor":"\\textbf{Bradyseism Monitor}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Phlegrean-Fields}{Github}}, {\\color{blue}\\href{https://campiflegrei-644a6eb36dd0.herokuapp.com/}{link}}) An interactive visualization, built with Dash, tracking the earthquakes in the Phlegrean Fields area, a large caldera near Naples, Italy.",
+        "AdventOfCode":"\\textbf{Advent of Code}: ({\\color{blue}\\href{https://github.com/MarcoTamb/AdventOfCode2023}{Github}}) My solutions to Advent of Code 2023, an annual programming challenges, happening every December",
+        "Galerkin":"\\textbf{Galerkin method}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Galerkin-Method-Report}{Github}}) A Jupyter report I had to produce for one of my exams at university, implementing a solver for PDEs"
+        },
+    "publications": {
+        "pub1":"Special Purpose Entities in external statistics: the journey to data collection in Europe and first analytical insights, {\\em manuscript in preparation},  J. Diz Diaz, F. Pastoris, C. Picon-Aguilar, M. Matteo, M. Tamburro"
+    }
+}

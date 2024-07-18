@@ -1,0 +1,34 @@
+
+
+    External Statistics and Sectors Accounts Division - External Statistics Section
+
+    Data analysis tools:
+    - Created, by myself and from the ground up, a new "Discovery Dashboard" using Plotly Dash which halves the time needed for monthly and quarterly data production, as well as enabling easier and in-depth data analysis. I am now working to create a second dashboard for the analysis of euro-area data
+    - Developed many new data analysis and visualization tools for the team, mostly in Jupyter, many of which now constitute the basis of the BoP data analysis process in the new platform SPACE
+    - Update and Maintenance of the Quality Assurance Report for BoP, in RMarkdown, which is sent to NCBs during each production round
+
+    Python:
+    - Migration to the new statistical platform SPACE (including writing new code to implement business-relevant changes, extensions and fixes)
+    - Creation and maintenance of automated CI/CD checks to automatically scan for new show-stopper bugs in the BoP SPACE processes
+    - Testing if new functionality satisfies the stated requirements
+    - Documentation of the new SPACE processes
+
+    Micro-data:
+    - Collecting information on SPEs Portfolio Investment from micro-data in RIAD and SHSS databases, using SQL, to produce new euro area macro estimates. Work on this project could also lead to a short publication
+
+    Balance of Payments:
+    - Working on periodic data production rounds for balance of payment statistics, running validations, analysing outliers and interacting with NCBs to understand and fix major issues in the data, as well as running the business-critical compilation of the data for the euro area to be published in the ECB Data Portal
+    - Periodic meetings with NCBs on quarterly asymmetries resolution in foreign direct investment, preparing the documents needed and writing minutesExternal Statistics and Sectors Accounts Division - External Statistics Section Data analysis tools: - Created, by myself and from the ground up, a new "Discovery Dashboard" using Plotly Dash which halves the time needed for monthly and quarterly data production, as well as enabling easier and in-depth data analysis. I am now working to create a second dashboard for the analysis of euro-area data - Developed many new data analysis and visualization tools for the team, mostly in Jupyter, many of which now constitute the basis of the BoP data analysis process in the new platform SPACE - Update and Maintenance of the Quality Assurance Report for BoP, in RMarkdown, which is sent to NCBs during each production round Python: - Migration to the new statistical platform SPACE (including writing new code to implement business-relevant changes, extensions and fixes) - Creation and maintenance of automated checks to automatically scan for new show-stopper bugs in the BoP SPACE processes - Testing if new functionality is fitting the stated requirements - Documentation of the new SPACE processes Micro-data: - Collecting information on SPEs Portfolio Investment from micro-data in RIAD and SHSS databases, using SQL, to produce new euro area macro estimates. Work on this project could also lead to a short publication Balance of Payments: - Working on periodic data production rounds for balance of payment statistics, running validations, analysing outliers and interacting with NCBs to understand and fix major issues in the data, as well as running the business-critical compilation of the data for the euro area to be published in the ECB Data Portal - Periodic meetings with NCBs on quarterly asymmetries resolution in foreign direct investment, preparing the documents needed and writing minutes
+    - Migration of external debt calculations for euro area balance of payments
+    - Migration of the processs covering seasonal adjustment of euro area current account timeseries
+
+SKILLS
+- Programming: Python, R, Matlab, C, C++, Julia, Object Oriented Programming, Algorithms, Git (GitLab), Jira, Agile
+- Data Science: Pandas, SQL, scikit-learn, TensorFlow, numpy, scipy
+- Data Visualization: Plotly Dash, Holoviz/Panels, Streamlit, Jupyter, ipywidgets, R Markdown, HTML, CSS
+- Other IT: Scripting in Microsoft Windows and Linux, networking 101, Docker 101
+- Software: Microsoft Office suite (including Word, Excel, Powerpoint)
+- Languages: Italian (Native), English (Bilingual/C2 CEFR), Spanish (Elementary - learning)
+
+PUBLICATIONS
+- Special Purpose Entities in external statistics: the journey to data collection in Europe and first analytical insights, manuscript in preparation, J. Diz Diaz, F. Pastoris, C. Picon-Aguilar, M. Matteo, M. Tamburro
