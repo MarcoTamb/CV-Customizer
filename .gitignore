@@ -10,3 +10,4 @@ pdflatex
 *.pdf
 *.synctex.gz
 TAMBURRO*.tex
+*.ipynb
