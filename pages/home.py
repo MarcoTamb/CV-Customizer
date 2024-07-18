@@ -35,7 +35,7 @@ jobs_form_generator = {
 
 def bullet_boxes(job, generate):
     if generate:
-        return [html.Div(id=f"bullets-textbox-{job}-answer")]+[dmc.Stack(sum(
+        return [html.H5('ChatGPT-generated bulletpoints'), dcc.Markdown(id=f"bullets-textbox-{job}-answer", children='<ChatGPT response here>')]+[dmc.Stack(sum(
             [
                 [
                     dmc.TextInput(
@@ -296,7 +296,8 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
             {"role": "user", "content": job_ad}
         ]
     )
-    summary=summary.choices[0].message.content
+    summary=summary.choices[0].message.content 
+    # need to generalize in the future
     with open(os.getcwd()+'\\tex\\CV_blueprint\\ecb.txt') as file:
         ecb=file.read()
     bullets = client.chat.completions.create(
@@ -309,13 +310,14 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
         ]
     )
     bullets=bullets.choices[0].message.content
-    return (dmc.Notification(
+    notification = dmc.Notification(
         title="Success!",
         id="compiled-notify",
         action="show",
-        message="Chat-GPT would have filled the form!",
+        message="Chat-GPT replied successfully!",
         icon=DashIconify(icon="ic:round-celebration"),
-    ), summary, bullets)
+    )
+    return (notification, summary, bullets)
     
 
 
