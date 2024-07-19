@@ -58,7 +58,7 @@ def experience_bullet_point(
         else:
             raise Exception("No employer or univerisy")
     if isinstance(bullet_points, list):
-        bullet_points="\\begin{itemize}[leftmargin=0.6cm, label={\\textbullet}]\n"+ "\n".join(
+        bullet_points="\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n"+ "\n".join(
         [
             "\\item " + bullet for bullet in bullet_points
         ]) +"\n\\end{itemize}"

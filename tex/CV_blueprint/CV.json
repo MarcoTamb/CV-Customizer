@@ -10,7 +10,7 @@
         ], 
         "title_fstring":"ECB {title}, Part III Math Graduate, {topic}",
         "layout_subtitle":{
-            "r": ["c1"],
+            "r": ["c1", "c2"],
             "c1": ["email", "phonenumber", "city"],
             "c2": ["linkedinprofile", "githubprofile"]
         },
@@ -82,7 +82,7 @@
             "end_date":"2018",
             "university":"University of Cambridge",
             "city":"Cambridge, UK",
-            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, label={\\textbullet}]\n\\item Also known as \\href{https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos}{Part III of the Mathematical Tripos}.\n\\item Entry requirement is a 1st (or equivalent highest mark) from a good university, around 5 applicants for each student admitted.\n\\end{itemize}",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item Also known as \\href{https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos}{Part III of the Mathematical Tripos}.\n\\item Entry requirement is a 1st (or equivalent highest mark) from a good university, around 5 applicants for each student admitted.\n\\end{itemize}",
             "href": "https://www.maths.cam.ac.uk/"
         },
         "torv":{
@@ -126,14 +126,15 @@
         "Programming":["Python", "R", "Matlab", "C", "C++", "Julia", "Object Oriented Programming", "Algorithms", "Git (GitLab)", "Jira", "Agile"],
         "Data Science":["Pandas", "SQL", "scikit-learn", "TensorFlow", "numpy", "scipy"],
         "Data Visualization":["Plotly Dash", "Holoviz/Panels", "Streamlit", "Jupyter", "ipywidgets", "R Markdown", "HTML", "CSS"],
-        "Other IT":["Scripting in Microsoft Windows and Linux", "networking 101", "Docker 101"],
+        "Other IT":["Scripting in Microsoft Windows and Linux", "networking", "Docker", "Chat-GPT-API"],
         "Software":["Microsoft Office suite (including Word, Excel, Powerpoint)"],
         "Languages":["Italian (Native)", "English (Bilingual/C2 CEFR)", "Spanish (Elementary - learning)"]
     },
     "code_samples": {
-        "BradyseismMonitor":"\\textbf{Bradyseism Monitor}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Phlegrean-Fields}{Github}}, {\\color{blue}\\href{https://campiflegrei-644a6eb36dd0.herokuapp.com/}{link}}) An interactive visualization, built with Dash, tracking the earthquakes in the Phlegrean Fields area, a large caldera near Naples, Italy.",
+        "BradyseismMonitor":"\\textbf{Bradyseism Monitor}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Phlegrean-Fields}{Github}}, {\\color{blue}\\href{https://campiflegrei-644a6eb36dd0.herokuapp.com/}{link}}) An interactive visualization, built with Dash, tracking the earthquakes in the Phlegrean Fields area, a large caldera near Naples, Italy",
         "AdventOfCode":"\\textbf{Advent of Code}: ({\\color{blue}\\href{https://github.com/MarcoTamb/AdventOfCode2023}{Github}}) My solutions to Advent of Code 2023, an annual programming challenges, happening every December",
-        "Galerkin":"\\textbf{Galerkin method}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Galerkin-Method-Report}{Github}}) A Jupyter report I had to produce for one of my exams at university, implementing a solver for PDEs"
+        "Galerkin":"\\textbf{Galerkin method}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Galerkin-Method-Report}{Github}}) A Jupyter report I had to produce for one of my exams at university, implementing a solver for PDEs",
+        "CV":"\\textbf{CV Customizer}: ({\\color{blue}\\href{https://github.com/MarcoTamb/CV-Customizer}{Github}}) An interface I made to quickly adapt my resume for specific job ads, starting from a draft built with ChatGPT's API"
         },
     "publications": {
         "pub1":"Special Purpose Entities in external statistics: the journey to data collection in Europe and first analytical insights, {\\em manuscript in preparation},  J. Diz Diaz, F. Pastoris, C. Picon-Aguilar, M. Matteo, M. Tamburro"

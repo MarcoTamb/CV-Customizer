@@ -3,7 +3,7 @@
     External Statistics and Sectors Accounts Division - External Statistics Section
 
     Data analysis tools:
-    - Created, by myself and from the ground up, a new "Discovery Dashboard" using Plotly Dash which halves the time needed for monthly and quarterly data production, as well as enabling easier and in-depth data analysis. I am now working to create a second dashboard for the analysis of euro-area data
+    - Created, by myself and from the ground up, a new "Discovery Dashboard" using Plotly Dash which halves the time needed for monthly and quarterly data production, as well as enabling easier and in-depth data analysis. I am now working to create a second dashboard for the analysis of euro-area data. The project has been highly praised and brought as an example in front of the whole Directorate, with direct praise from the Director General
     - Developed many new data analysis and visualization tools for the team, mostly in Jupyter, many of which now constitute the basis of the BoP data analysis process in the new platform SPACE
     - Update and Maintenance of the Quality Assurance Report for BoP, in RMarkdown, which is sent to NCBs during each production round
 
