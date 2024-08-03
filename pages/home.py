@@ -145,9 +145,10 @@ def layout():
             label="Show dates",
             placeholder="Select one",
             id="show-dates",
-            value="No",
+            value="Almost Graduated",
             data=[
                 "Yes",
+                "Almost Graduated", #will be purged soon
                 "No"
             ],
             w=200,
@@ -160,6 +161,19 @@ def layout():
                 label="Include Code Samples",
                 placeholder="Select one",
                 id="include-code-samples",
+                value="Yes",
+                data=[
+                    "Yes",
+                    "No"
+                ],
+                w=200,
+                mb=10,
+            ),
+            html.H3('Courses'),
+            dmc.Select(
+                label="Include Courses",
+                placeholder="Select one",
+                id="include-courses",
                 value="Yes",
                 data=[
                     "Yes",
@@ -337,6 +351,7 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
         State("jobs-store", 'data'),
         State("show-dates", 'value'),
         State("include-code-samples", 'value'),
+        State("include-courses", 'value'),
         State("include-publications", 'value'),
         State("scale_slider", 'value'),
     ],
@@ -355,10 +370,17 @@ def compile_funciton(n_clicks,
                      adapted_bullet_points,
                      display_graduation_dates,
                      code_samples,
+                     courses,
                      publications,
                      scale
                      ):
-    display_graduation_dates = display_graduation_dates == "Yes"
+    if display_graduation_dates == "Yes":
+        display_graduation_dates = True
+    elif display_graduation_dates == "No":
+        display_graduation_dates = False
+    else:
+        display_graduation_dates = 'almost-graduated'
+    # display_graduation_dates = display_graduation_dates == "Yes"
     code_samples = code_samples == "Yes"
     publications = publications == "Yes"
     path = compile_CV(
@@ -371,6 +393,7 @@ def compile_funciton(n_clicks,
             adapted_bullet_points= adapted_bullet_points,
             summary_text=summary, 
             code_samples=code_samples,
+            courses=courses,
             display_graduation_dates=display_graduation_dates,
             publications=publications,
             scale=scale)

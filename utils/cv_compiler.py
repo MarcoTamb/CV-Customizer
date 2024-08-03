@@ -40,7 +40,7 @@ def get_personal_info(CV_data, current_title):
     return first_piece + rows_string + "\\end{center}\n"
 
 def get_summary(summary_text):
-    return f"\\section{{Profile}}\n{{{summary_text}}}\n"
+    return f"""\\section{{Profile}}\n{{{summary_text.replace("%", "\\%").replace("’", "'")}}}\n"""
 
 def experience_bullet_point(
         experience_dict, 
@@ -58,6 +58,8 @@ def experience_bullet_point(
         else:
             raise Exception("No employer or univerisy")
     if isinstance(bullet_points, list):
+        bullet_points = [bullet.replace("%", "\\%").replace("’", "'") if bullet[-1]!='.' else bullet[:-1].replace("%", "\\%").replace("’", "'")
+                         for bullet in bullet_points]
         bullet_points="\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n"+ "\n".join(
         [
             "\\item " + bullet for bullet in bullet_points
@@ -84,14 +86,21 @@ def fill_work_experience(CV_data, job_titles, employer_names, bullet_points={}):
     return f"\\section{{Work Experience}}\n" + content
 
 def fill_education(CV_data, display_graduation_dates, titles={}, bullet_points={}):
+    if display_graduation_dates=='almost-graduated':
+        almost_graduated=True
+        display_graduation_dates=False
     education =  CV_data["education"]
     if titles=={}:
         titles = {key: education[key]["title"] for key in education.keys()}
-    content = "\n\n".join([
+    content = [
         experience_bullet_point(education[degree], titles[degree], bullet_points[degree], show_dates=display_graduation_dates) if education[degree]["personalize"] else experience_bullet_point(education[degree], titles[degree], bullet_points = education[degree]["description_fixed"], show_dates=display_graduation_dates)
         for degree in education.keys()
-    ])
-    return f"\\section{{Education}}\n" + content
+    ]
+
+    ### Personal edit - non-generalizable - to be purged toon
+    if almost_graduated:
+        content[1] = experience_bullet_point(education['torv'], titles['torv'], bullet_points = '\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item Graduating soon\n\\end{itemize}', show_dates=display_graduation_dates)
+    return f"\\section{{Education}}\n" + "\n\n".join(content)
 
 def fill_awards(CV_data):
     awards =  CV_data["awards"]
@@ -112,6 +121,16 @@ def fill_code_samples(CV_data):
         ]
     ) + "\n\\end{itemize}}"
     return f"\\section{{Code Samples}}\n" + content
+
+def fill_courses(CV_data):
+    courses =  CV_data["courses"]
+    content= "{\\begin{itemize}[label=\\textbullet]\n" + "\n".join(
+        [
+            "\\item " + courses[course] 
+            for course in courses.keys()
+        ]
+    ) + "\n\\end{itemize}}"
+    return f"\\section{{Courses}}\n" + content
 
 def fill_skills(CV_data):
     skills =  CV_data["skills"]
@@ -142,6 +161,7 @@ def compile_CV(CV_data,
                adapted_bullet_points,
                summary_text,  
                code_samples=True,
+               courses=True,
                display_graduation_dates=False,
                publications=False,
                scale=0.915
@@ -176,8 +196,11 @@ def compile_CV(CV_data,
     
     if code_samples:
         file = file +"\n" +fill_code_samples(CV_data)
-
+        
     file = file + "\n".join([awards, skills])
+
+    if courses:
+        file = file +"\n" +fill_courses(CV_data)
 
     if publications:
         file = file +"\n" +get_publications(CV_data)

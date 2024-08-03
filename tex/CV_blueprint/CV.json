@@ -12,7 +12,7 @@
         "layout_subtitle":{
             "r": ["c1", "c2"],
             "c1": ["email", "phonenumber", "city"],
-            "c2": ["linkedinprofile", "githubprofile"]
+            "c2": ["linkedinprofile", "githubprofile", "kaggleprofile"]
         },
         "subtitle_info": {
             "phonenumber": {
@@ -32,6 +32,11 @@
                 "value": "github.com/MarcoTamb",
                 "symbol":"\\faGithub",
                 "href": "https://github.com/MarcoTamb"
+            },
+            "kaggleprofile": {
+                "value": "kaggle.com/marcotamburro",
+                "symbol":"\\faKaggle",
+                "href": "https://www.kaggle.com/marcotamburro"
             },
             "linkedinprofile": {
                 "value":"in/marco-tamburro",
@@ -82,7 +87,7 @@
             "end_date":"2018",
             "university":"University of Cambridge",
             "city":"Cambridge, UK",
-            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item Also known as \\href{https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos}{Part III of the Mathematical Tripos}.\n\\item Entry requirement is a 1st (or equivalent highest mark) from a good university, around 5 applicants for each student admitted.\n\\end{itemize}",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item Also known as \\href{https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos}{Part III of the Mathematical Tripos}\n\\item Entry requirement is a 1st (or equivalent highest mark) from a good university, around 5 applicants for each student admitted\n\\end{itemize}",
             "href": "https://www.maths.cam.ac.uk/"
         },
         "torv":{
@@ -135,6 +140,12 @@
         "AdventOfCode":"\\textbf{Advent of Code}: ({\\color{blue}\\href{https://github.com/MarcoTamb/AdventOfCode2023}{Github}}) My solutions to Advent of Code 2023, an annual programming challenges, happening every December",
         "Galerkin":"\\textbf{Galerkin method}: ({\\color{blue}\\href{https://github.com/MarcoTamb/Galerkin-Method-Report}{Github}}) A Jupyter report I had to produce for one of my exams at university, implementing a solver for PDEs",
         "CV":"\\textbf{CV Customizer}: ({\\color{blue}\\href{https://github.com/MarcoTamb/CV-Customizer}{Github}}) An interface I made to quickly adapt my resume for specific job ads, starting from a draft built with ChatGPT's API"
+        },
+    "courses": {
+        "MachineLearning":"\\textbf{Machine Learning Specialization}: ({\\color{blue}\\href{https://coursera.org/share/04e57a8532a168d69e11c2b49f8be9c8}{Certificate}}) 3 Coursera courses covering ML algorithms, from Stanford professor and Coursera co-founder Andrew Ng",
+        "Financial_engineering_intro":"\\textbf{Introduction to Financial Engineering and Risk Management}: ({\\color{blue}\\href{https://coursera.org/share/f0a3727fae667587ada6746e2621dd08}{Certificate}}) Coursera course on asset pricing theory, offered by Columbia University on Coursera",
+        "Presentation_skills":"\\textbf{Presentation Skills}: Internal ECB training on delivering presentations, offered by PwC instructors",
+        "Data_Storytelling":"\\textbf{Storytelling with Data}: Internal ECB training on data visualization and data-driven presentations, offered by Krisolis"
         },
     "publications": {
         "pub1":"Special Purpose Entities in external statistics: the journey to data collection in Europe and first analytical insights, {\\em manuscript in preparation},  J. Diz Diaz, F. Pastoris, C. Picon-Aguilar, M. Matteo, M. Tamburro"

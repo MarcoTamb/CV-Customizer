@@ -88,5 +88,11 @@ SKILLS
 - Software: Microsoft Office suite (including Word, Excel, Powerpoint)
 - Languages: Italian (Native), English (Bilingual/C2 CEFR), Spanish (Elementary - learning)
 
+PROFESSIONAL COURSES
+- Machine Learning Specialization: 3 Coursera courses covering ML algorythms, from Stanford professor and Coursera co-founder Andrew Ng
+- Introduction to Financial Engineering and Risk Management: Coursera course on asset pricing theory, offered by Columbia University on Coursera
+- Presentation Skills: Internal ECB training on delivering presentations, offered by PwC instructors
+- Storytelling with Data: Internal ECB training on data visualization and data-driven presentations, offered by Krisolis
+
 PUBLICATIONS
 - Special Purpose Entities in external statistics: the journey to data collection in Europe and first analytical insights, manuscript in preparation, J. Diz Diaz, F. Pastoris, C. Picon-Aguilar, M. Matteo, M. Tamburro
