@@ -58,7 +58,7 @@ def experience_bullet_point(
         else:
             raise Exception("No employer or univerisy")
     if isinstance(bullet_points, list):
-        bullet_points = [bullet.replace("%", "\\%").replace("’", "'") if bullet[-1]!='.' else bullet[:-1].replace("%", "\\%").replace("’", "'")
+        bullet_points = [bullet.replace("%", "\\%").replace("’", "'").replace("—", " - ") if bullet[-1]!='.' else bullet[:-1].replace("%", "\\%").replace("’", "'").replace("—", " - ")
                          for bullet in bullet_points]
         bullet_points="\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n"+ "\n".join(
         [
