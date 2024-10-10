@@ -12,7 +12,7 @@
         "layout_subtitle":{
             "r": ["c1", "c2"],
             "c1": ["email", "phonenumber", "city"],
-            "c2": ["linkedinprofile", "githubprofile", "kaggleprofile"]
+            "c2": ["linkedinprofile", "githubprofile"]
         },
         "subtitle_info": {
             "phonenumber": {
@@ -56,7 +56,7 @@
                 "Statistician"
             ],
             "start_date":"09/2022",
-            "end_date":"Present",
+            "end_date":"08/2024",
             "employer":[
                 "European Central Bank",
                 "European Central Bank - DG Statistics"
@@ -101,7 +101,7 @@
         },
         "iuss":{
             "personalize": false,
-            "title":"\"Corsi Ordinari\" Honours Course",
+            "title":"``Corsi Ordinari\" Honours Course",
             "start_date":"2014",
             "end_date":"2017",
             "university":"IUSS Pavia",

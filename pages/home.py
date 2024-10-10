@@ -32,10 +32,14 @@ jobs_form_generator = {
         }
     for job in CV_data['experience'].keys()
 }
+long_descriptions = {
+    job: CV_data['experience'][job]["description_long"]
+    for job in jobs_form_generator if jobs_form_generator[job]["bullet_points"]==True
+}
 
 def bullet_boxes(job, generate):
     if generate:
-        return [html.H5('ChatGPT-generated bulletpoints'), dcc.Markdown(id=f"bullets-textbox-{job}-answer", children='<ChatGPT response here>')]+[dmc.Stack(sum(
+        return [html.H5('ChatGPT-generated bulletpoints'), dcc.Markdown(id={"type": "bullets-textbox-answer", "index": job}, children='<ChatGPT response here>')]+[dmc.Stack(sum(
             [
                 [
                     dmc.TextInput(
@@ -121,16 +125,16 @@ def layout():
                 dmc.Select(
                     label=labels_dropdowns[key],
                     placeholder="Select one",
-                    id={"type": f"experience-select-{key}", "index": j},
+                    id={"type": f"experience-select-{key}", "index": job},
                     value=CV_data['experience'][job][key][0],
                     data=CV_data['experience'][job][key],
                     w=200,
                     mb=10,
                 ) for key in jobs_form_generator[job]["dropdowns"]
             ] +  bullet_boxes(job, jobs_form_generator[job]["bullet_points"]) + [
-                dcc.Store(id={"type": "job-stores-bullets", "index": j})
+                dcc.Store(id={"type": "job-stores-bullets", "index": job})
             ] 
-        for j, job in enumerate(jobs_form_generator.keys())
+        for job in jobs_form_generator.keys()
         ], [])
 
     jobs_form = [
@@ -230,10 +234,10 @@ def update_title(title, topic):
 
 
 # store for each job the bullets in its store
-for j, job in enumerate(jobs_form_generator.keys()): 
+for job in jobs_form_generator.keys(): 
     if jobs_form_generator[job]["bullet_points"]: 
         @app.callback(
-            Output({"type": "job-stores-bullets", "index": j}, 'data'),
+            Output({"type": "job-stores-bullets", "index": job}, 'data'),
             Input({'type': f'bullets-checkbox-{job}', 'index': ALL}, 'checked'),
             Input({'type': f'bullets-textbox-{job}', 'index': ALL}, 'value'),
         )
@@ -241,14 +245,13 @@ for j, job in enumerate(jobs_form_generator.keys()):
             list_of_points=[value[i] for i, checkbox in enumerate(checkboxes) if checkbox]
             return list_of_points
 
-# copy all stores in a central one
+# copy all stores in a central one when a bullet store gets changed
 @app.callback(
     Output("jobs-store", 'data'),
-    inputs=sum([
-        [Input({"type": "job-stores-bullets", "index": ALL}, 'modified_timestamp'),
-        State({"type": "job-stores-bullets", "index": ALL}, 'data')]
-        for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]
-        ], [])
+    inputs=[
+        Input({"type": "job-stores-bullets", "index": ALL}, 'modified_timestamp'),
+        State({"type": "job-stores-bullets", "index": ALL}, 'data')
+        ]
 )
 def update_all_jobs_bullets_store(timestamps, stores):
     jobs=[job for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]]
@@ -283,8 +286,8 @@ def update_job_bullets_store(values):
         Output("notification-2", "children"),
         Output("summary", "value"),
     ]+[
-        #Output({'type': f'bullets-textbox-{job}', 'index': ALL}, 'value') for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]
-        Output(f'bullets-textbox-{job}-answer', 'children') for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]
+        Output({'type': f'bullets-textbox-answer', 'index': job}, 'children') for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]
+        #Output(f'bullets-textbox-{job}-answer', 'children') for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]
     ],
     inputs=[
         Input("fill_start", "n_clicks"),
@@ -297,7 +300,7 @@ def update_job_bullets_store(values):
     ],
     prevent_initial_call=True,
 )
-def fill_funciton(n_clicks, job_title, company, job_ad):
+def fill_function(n_clicks, job_title, company, job_ad):
     with open(os.getcwd()+'\\tex\\CV_blueprint\\CV.txt') as file:
         CV_text=file.read()
     client = OpenAI()
@@ -312,18 +315,21 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
     )
     summary=summary.choices[0].message.content 
     # need to generalize in the future
-    with open(os.getcwd()+'\\tex\\CV_blueprint\\ecb.txt') as file:
-        ecb=file.read()
-    bullets = client.chat.completions.create(
-        model=GPT_model,
-        messages=[
-            {"role": "system", "content": prompt_bulletpoints.format(job_title=job_title, company=company)},
-            {"role": "user", "content": f"Here is a summary of what I did at the ECB, the job ad will be in the next message: {ecb}"},
-            {"role": "assistant", "content": "Ok! I will reply with a 5 bulletpoints to put on your CV related to your work at ECB, appropriate for the position you are applying to, when you send me a the position you are applying to"},
-            {"role": "user", "content": job_ad}
-        ]
-    )
-    bullets=bullets.choices[0].message.content
+    bullets_dict={}
+    for job in long_descriptions.keys(): 
+        with open(os.getcwd()+f'\\tex\\CV_blueprint\\{long_descriptions[job]}') as file:
+            description=file.read()
+        bullets = client.chat.completions.create(
+            model=GPT_model,
+            messages=[
+                {"role": "system", "content": prompt_bulletpoints.format(job_title=job_title, company=company)},
+                {"role": "user", "content": f"Here is a summary of what I did at the {job}, the job ad will be in the next message: {description}"},
+                {"role": "assistant", "content": f"Ok! I will reply with a 5 bulletpoints to put on your CV related to your work at {job}, appropriate for the position you are applying to, when you send me a the position you are applying to"},
+                {"role": "user", "content": job_ad}
+            ]
+        )
+        bullets_dict[job]=bullets.choices[0].message.content
+
     notification = dmc.Notification(
         title="Success!",
         id="compiled-notify",
@@ -331,7 +337,7 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
         message="Chat-GPT replied successfully!",
         icon=DashIconify(icon="ic:round-celebration"),
     )
-    return (notification, summary, bullets)
+    return tuple([notification, summary] + [bullets_dict[job] for job in bullets_dict.keys()])
     
 
 
@@ -360,19 +366,19 @@ def fill_funciton(n_clicks, job_title, company, job_ad):
     ],
     prevent_initial_call=True,
 )
-def compile_funciton(n_clicks, 
-                     job_title, 
-                     company, 
-                     long_title, 
-                     summary, 
-                     adapted_titles, 
-                     adapted_employers,
-                     adapted_bullet_points,
-                     display_graduation_dates,
-                     code_samples,
-                     courses,
-                     publications,
-                     scale
+def compile_funciton(n_clicks, #compile_start
+                     job_title,  #position-name
+                     company,  #company-name
+                     long_title,  #subtitle
+                     summary,  #summary
+                     adapted_titles,  #job-store-job_titles
+                     adapted_employers, #job-store-employer 
+                     adapted_bullet_points, #jobs-store
+                     display_graduation_dates, #show-dates
+                     code_samples, #include-code-samples
+                     courses, #include-courses
+                     publications, #include-publications
+                     scale #scale_slider
                      ):
     if display_graduation_dates == "Yes":
         display_graduation_dates = True
