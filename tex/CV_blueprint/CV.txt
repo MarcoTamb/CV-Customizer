@@ -1,7 +1,7 @@
 SUMMARY
 
-Data Science Analyst @ European Central Bank | QuantitativeFinance Expert | Cambridge Math Grad 
-Driving innovation in finance and data science with a passion forstatistical analysis, machine learning, and time series forecasting.Key Achievements:
+Data Science Analyst @ European Central Bank | Quantitative Finance Expert | Cambridge Math Grad 
+Driving innovation in finance and data science with a passion for statistical analysis, machine learning, and time series forecasting.Key Achievements:
 - Streamlined ECB data operations with a Python dashboard, enhancing team efficiency.
 - Expert in economic time-series analysis and outlier detection.
 - Skilled in Python, R, Matlab, and advanced data visualization tools.
