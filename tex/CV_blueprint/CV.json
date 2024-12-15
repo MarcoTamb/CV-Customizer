@@ -25,7 +25,7 @@
                 "href": "mailto:marcotamburro96@gmail.com"
             },
             "city": {
-                "value":"Frankfurt am Main, DE",
+                "value":"Luxembourg, LU",
                 "symbol":"\\faHome"
             },
             "githubprofile": {
@@ -95,9 +95,19 @@
             "title":"MSc in Pure and Applied Mathematics",
             "start_date":"2022",
             "end_date":"2024",
-            "university":"\\href{https://web.uniroma2.it/}{Università di Roma - Tor Vergata}/\\href{https://en.unipv.it/en}{Pavia}",
+            "university":"\\href{https://web.uniroma2.it/}{Roma - Tor Vergata}/\\href{https://en.unipv.it/en}{Pavia}",
             "city":"Rome/Pavia, IT",
-            "description_fixed":""
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item 110/110 e lode\n\\end{itemize}"
+        },
+        "unipv":{
+            "personalize": false,
+            "title":"BSc Mathematics",
+            "start_date":"2014",
+            "end_date":"2017",
+            "university":"Università degli Studi di Pavia",
+            "city":"Pavia, IT",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, noitemsep, label={\\textbullet}]\n\\item 110/110 e lode\n\\end{itemize}",
+            "href": "https://en.unipv.it/en"
         },
         "iuss":{
             "personalize": false,
@@ -108,16 +118,6 @@
             "city":"Pavia, IT",
             "description_fixed":"",
             "href": "https://www.iusspavia.it/en"
-        },
-        "unipv":{
-            "personalize": false,
-            "title":"BSc Mathematics",
-            "start_date":"2014",
-            "end_date":"2017",
-            "university":"Università degli Studi di Pavia",
-            "city":"Pavia, IT",
-            "description_fixed":"",
-            "href": "https://en.unipv.it/en"
         }
     },
     "awards": {

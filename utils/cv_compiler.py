@@ -89,6 +89,8 @@ def fill_education(CV_data, display_graduation_dates, titles={}, bullet_points={
     if display_graduation_dates=='almost-graduated':
         almost_graduated=True
         display_graduation_dates=False
+    else: 
+        almost_graduated=False
     education =  CV_data["education"]
     if titles=={}:
         titles = {key: education[key]["title"] for key in education.keys()}

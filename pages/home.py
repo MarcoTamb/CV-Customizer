@@ -6,9 +6,10 @@ from dash_iconify import DashIconify
 from utils.cv_compiler import compile_CV
 import os
 import json
+from datetime import date
 from openai import OpenAI
-from utils.prompts import prompt_summary, prompt_bulletpoints
-from utils.constants import GPT_model
+from utils.prompts import prompt_summary, prompt_bulletpoints, prompt_questions, prompt_cover_letter
+from utils.constants import GPT_model_summary, GPT_model_answer, GPT_model_bullet_points, GPT_model_cover_letter
 
 register_page(__name__, path='/')
 
@@ -59,7 +60,9 @@ def bullet_boxes(job, generate):
         return []
     
 def layout():
-    
+
+    spacer_short= html.Div(className='spacer_short')
+    spacer_long= html.Div(className='spacer_long')
     auto_fill_form=[
         html.H2('AI Auto-Fill'),
         dmc.Stack(
@@ -75,13 +78,16 @@ def layout():
             w=1000,
             autosize=True,
             minRows=2,
-        ),
-        dmc.Center(
-                [
-                    dmc.Button("Auto-Fill", id='fill_start',  w=120),
-                ],
-            ),
+        )
         ]
+    
+    auto_fill_button = [spacer_short, 
+                        dmc.Center(
+                                [
+                                    dmc.Button("AI Auto-Fill", id='fill_start',  w=120),
+                                ],
+                            )
+                        ]
     
     header_form=[
         html.H3('Header'),
@@ -149,16 +155,16 @@ def layout():
             label="Show dates",
             placeholder="Select one",
             id="show-dates",
-            value="Almost Graduated",
+            value="Yes",#"Almost Graduated",
             data=[
                 "Yes",
-                "Almost Graduated", #will be purged soon
+                #"Almost Graduated",
                 "No"
             ],
             w=200,
             mb=10,
         )]
-    experience_form=header_form + summary_form + jobs_form + education_form
+    experience_form=auto_fill_button + [html.H2('Manual Edit')] + header_form + summary_form + jobs_form + education_form
     final_form_and_compile=[
             html.H3('Code Samples'),
             dmc.Select(
@@ -191,7 +197,7 @@ def layout():
                 label="Include Publications",
                 placeholder="Select one",
                 id="include-publications",
-                value="Yes",
+                value="No",
                 data=[
                     "Yes",
                     "No"
@@ -200,21 +206,61 @@ def layout():
                 mb=10,
             ),
             html.H3('Scale'),
+            spacer_short,
             dmc.Slider(
                 id="scale_slider",
                 min=0.8, max=1, step=0.001, value=0.915
             ),
+            spacer_short,
             dmc.Center(
                 [
                     dmc.Button("Compile CV", id='compile_start',  w=120),
                     dcc.Download(id="download-pdf"),
                 ],
             ),
+            spacer_long,
             html.Div(id='notification'),
             html.Div(id='notification-2'),
         ]
+    
+    question_form = [
+            dmc.TextInput(label="Question", id="question-input"),
+            dmc.TextInput(label="Character Limit", w=300, id="question-output-size"),
+            spacer_short,
+            dmc.Center([dmc.Button("AI answer", id='answer_start',  w=120)]),
+            spacer_short, 
+            dcc.Markdown(id='question-output'),
+            spacer_long,
+            html.Div(id='notification-question'),
+        ]
+    
+    cover_letter_form = [
+        spacer_short,
+        dmc.Center([dmc.Button("AI Cover Letter", id='cover_letter_start',  w=200)]),
+        spacer_short, 
+        dcc.Markdown(id='cover-letter-output'),
+        spacer_long,
+        html.Div(id='notification-cover-letter'),
+        ]
+    
+    tabs = [
+        dmc.Tabs(
+            value='cv-builder', 
+            children=[
+                dmc.TabsList([
+                    dmc.TabsTab('CV builder', value='cv-builder'),
+                    dmc.TabsTab('Questions', value='question-form'),
+                    dmc.TabsTab('Cover Letter', value='cover-letter-form'),
+                    ]),
+                dmc.TabsPanel(experience_form + final_form_and_compile, value="cv-builder"),
+                dmc.TabsPanel(question_form, value="question-form"),
+                dmc.TabsPanel(cover_letter_form, value="cover-letter-form"),
+            ]
+        )
+    ]
+
     layout = html.Div(
-        children = auto_fill_form + [html.H2('Manual Edit')] + experience_form + final_form_and_compile,
+        children = auto_fill_form + [html.Div(className='spacer_tabs')] +tabs,
         className='main_inputs',
     )
     return layout
@@ -305,7 +351,7 @@ def fill_function(n_clicks, job_title, company, job_ad):
         CV_text=file.read()
     client = OpenAI()
     summary = client.chat.completions.create(
-        model=GPT_model,
+        model=GPT_model_summary,
         messages=[
             {"role": "system", "content": prompt_summary.format(job_title=job_title, company=company)},
             {"role": "user", "content": f"Here is a summary of the contents of my CV, the job ad will be in the next message: {CV_text}"},
@@ -319,10 +365,18 @@ def fill_function(n_clicks, job_title, company, job_ad):
     for job in long_descriptions.keys(): 
         with open(os.getcwd()+f'\\tex\\CV_blueprint\\{long_descriptions[job]}') as file:
             description=file.read()
+
+        past_title_data = CV_data['experience'][job]["job_titles"]
+        past_title = past_title_data if isinstance(past_title_data, str) else past_title_data[0]
+        employer_data = CV_data['experience'][job]["employer"]
+        past_employer = employer_data if isinstance(employer_data, str) else employer_data[0]
         bullets = client.chat.completions.create(
-            model=GPT_model,
+            model=GPT_model_bullet_points,
             messages=[
-                {"role": "system", "content": prompt_bulletpoints.format(job_title=job_title, company=company)},
+                {"role": "system", "content": prompt_bulletpoints.format(past_title = past_title,
+                                                                         past_employer=past_employer, 
+                                                                         job_title=job_title, 
+                                                                         company=company)},
                 {"role": "user", "content": f"Here is a summary of what I did at the {job}, the job ad will be in the next message: {description}"},
                 {"role": "assistant", "content": f"Ok! I will reply with a 5 bulletpoints to put on your CV related to your work at {job}, appropriate for the position you are applying to, when you send me a the position you are applying to"},
                 {"role": "user", "content": job_ad}
@@ -412,3 +466,100 @@ def compile_funciton(n_clicks, #compile_start
     ),
     dcc.send_file(path),
     )
+
+@app.callback(
+    output=[
+        Output("notification-question", "children"),
+        Output("question-output", "children"),
+    ],
+    inputs=[
+        Input("answer_start", "n_clicks"),
+        State("question-input", "value"),
+        State("question-output-size", "value"),
+        State("position-name", "value"),
+        State("company-name", "value"),
+        State("job_ad", "value"),
+    ],
+    running=[
+        (Output("answer_start", "loading"), True, False),
+    ],
+    prevent_initial_call=True,
+)
+def answer_function(n_clicks, question, character_limit, job_title, company, job_ad):
+    with open(os.getcwd()+'\\tex\\CV_blueprint\\CV.txt') as file:
+        CV_text=file.read()
+
+    try:
+        length_limit = ' Length limit is {character_limit}'.format(character_limit = int(character_limit))
+    except:
+        length_limit = ''
+
+    client = OpenAI()
+    answer_response = client.chat.completions.create(
+        model=GPT_model_answer,
+        messages=[
+            {"role": "system", "content": prompt_questions.format(job_title=job_title, 
+                                                                  company=company,
+                                                                  )+length_limit,
+                                                                  },
+            {"role": "user", "content": f"Here is a summary of the contents of my CV, the job ad will be in the next message: {CV_text}"},
+            {"role": "assistant", "content": "Ok! I will help you answer this question. Now, send me the position you are applying to."},
+            {"role": "user", "content": job_ad},
+            {"role": "assistant", "content": "Now send me the question you need help answering"},
+            {"role": "user", "content": question},
+        ]
+    )
+    answer=answer_response.choices[0].message.content 
+
+    notification = dmc.Notification(
+        title="Success!",
+        id="compiled-notify-answer",
+        action="show",
+        message="Chat-GPT replied!",
+        icon=DashIconify(icon="ic:round-celebration"),
+    )
+    return tuple([notification, answer])
+
+
+@app.callback(
+    output=[
+        Output("notification-cover-letter", "children"),
+        Output("cover-letter-output", "children"),
+    ],
+    inputs=[
+        Input("cover_letter_start", "n_clicks"),
+        State("position-name", "value"),
+        State("company-name", "value"),
+        State("job_ad", "value"),
+    ],
+    running=[
+        (Output("cover_letter_start", "loading"), True, False),
+    ],
+    prevent_initial_call=True,
+)
+def cover_letter_function(n_clicks, job_title, company, job_ad):
+    with open(os.getcwd()+'\\tex\\CV_blueprint\\CV.txt') as file:
+        CV_text=file.read()
+
+    client = OpenAI()
+    answer_response = client.chat.completions.create(
+        model=GPT_model_cover_letter,
+        messages=[
+            {"role": "system", "content": prompt_cover_letter.format(job_title=job_title, 
+                                                                  company=company,
+                                                                  )},
+            {"role": "user", "content": f"Here is a summary of the contents of my CV, the job ad will be in the next message: {CV_text}"},
+            {"role": "assistant", "content": "Ok! I will help you write a cover letter. Now, send me the position you are applying to."},
+            {"role": "user", "content": job_ad},
+        ]
+    )
+    cover_letter=answer_response.choices[0].message.content 
+    cover_letter=cover_letter.replace('[Date]', date.today().strftime('%d %B %Y'))
+    notification = dmc.Notification(
+        title="Success!",
+        id="compiled-notify-answer",
+        action="show",
+        message="Chat-GPT replied!",
+        icon=DashIconify(icon="ic:round-celebration"),
+    )
+    return tuple([notification, cover_letter])

@@ -10,6 +10,15 @@ h3{
     margin-top: 20px;
 
 }
+.spacer_tabs{
+    height: 40px;
+}
+.spacer_short{
+    height: 40px;
+}
+.spacer_long{
+    height: 100px;
+}
 
 .main_inputs{
     margin: auto;
