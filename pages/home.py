@@ -40,7 +40,7 @@ long_descriptions = {
 
 def bullet_boxes(job, generate):
     if generate:
-        return [html.H5('ChatGPT-generated bulletpoints'), dcc.Markdown(id={"type": "bullets-textbox-answer", "index": job}, children='<ChatGPT response here>')]+[dmc.Stack(sum(
+        return [html.H6('ChatGPT-generated bulletpoints'), dcc.Markdown(id={"type": "bullets-textbox-answer", "index": job}, children='')]+[dmc.Stack(sum(
             [
                 [
                     dmc.TextInput(
@@ -64,7 +64,7 @@ def layout():
     spacer_short= html.Div(className='spacer_short')
     spacer_long= html.Div(className='spacer_long')
     auto_fill_form=[
-        html.H2('AI Auto-Fill'),
+        html.H3('Job information'),
         dmc.Stack(
             [
                 dmc.TextInput(label="Company Name", w=300, id="company-name"),
@@ -90,7 +90,7 @@ def layout():
                         ]
     
     header_form=[
-        html.H3('Header'),
+        html.H4('Header'),
         dmc.Stack(
             [
                 dmc.Select(
@@ -116,7 +116,7 @@ def layout():
         ),
     ]
     summary_form = [
-        html.H3('Summary'),
+        html.H4('Summary'),
         dmc.Textarea(
             id='summary',
             label="Summary",
@@ -144,13 +144,13 @@ def layout():
         ], [])
 
     jobs_form = [
-        html.H3('Jobs'),
+        html.H4('Jobs'),
         dcc.Store(id="jobs-store"),
         dcc.Store(id="job-store-job_titles"),
         dcc.Store(id="job-store-employer")
     ]+job_elements
     education_form= [
-        html.H3('Education'),
+        html.H4('Education'),
         dmc.Select(
             label="Show dates",
             placeholder="Select one",
@@ -164,9 +164,9 @@ def layout():
             w=200,
             mb=10,
         )]
-    experience_form=auto_fill_button + [html.H2('Manual Edit')] + header_form + summary_form + jobs_form + education_form
+    experience_form=auto_fill_button + header_form + summary_form + jobs_form + education_form
     final_form_and_compile=[
-            html.H3('Code Samples'),
+            html.H4('Code Samples'),
             dmc.Select(
                 label="Include Code Samples",
                 placeholder="Select one",
@@ -179,7 +179,7 @@ def layout():
                 w=200,
                 mb=10,
             ),
-            html.H3('Courses'),
+            html.H4('Courses'),
             dmc.Select(
                 label="Include Courses",
                 placeholder="Select one",
@@ -192,7 +192,7 @@ def layout():
                 w=200,
                 mb=10,
             ),
-            html.H3('Publications'),
+            html.H4('Publications'),
             dmc.Select(
                 label="Include Publications",
                 placeholder="Select one",
@@ -205,7 +205,7 @@ def layout():
                 w=200,
                 mb=10,
             ),
-            html.H3('Scale'),
+            html.H4('Scale'),
             spacer_short,
             dmc.Slider(
                 id="scale_slider",
