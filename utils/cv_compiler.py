@@ -152,6 +152,8 @@ def get_publications(CV_data):
         ]
     ) + "\n\\end{itemize}}"
     return f"\\section{{Publications}}\n" + content
+
+
     
 def compile_CV(CV_data,
                job_title,
@@ -165,7 +167,8 @@ def compile_CV(CV_data,
                courses=True,
                display_graduation_dates=False,
                publications=False,
-               scale=0.915
+               reference_letters=False,
+               scale=0.9
                ):
     cwd=os.getcwd()
     with open(cwd+'\\tex\\CV_blueprint\\imports.tex', 'r') as file:
@@ -205,6 +208,10 @@ def compile_CV(CV_data,
 
     if publications:
         file = file +"\n" +get_publications(CV_data)
+
+    if reference_letters:
+        path = cwd.replace('\\', '/')
+        file = file + "\n" + f"\\includepdf[pages=-]{{{path}/tex/CV_blueprint/references.pdf}}\n"
         
     file = file + "\n\n\\end{document}"
     filename=f"{surname.upper()}.{company.replace(' ', '_')}.{job_title.replace(' ', '_')}"

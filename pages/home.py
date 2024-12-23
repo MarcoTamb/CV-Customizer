@@ -205,6 +205,19 @@ def layout():
                 w=200,
                 mb=10,
             ),
+            html.H4('References'),
+            dmc.Select(
+                label="Include References",
+                placeholder="Select one",
+                id="include-references",
+                value="Yes",
+                data=[
+                    "Yes",
+                    "No"
+                ],
+                w=200,
+                mb=10,
+            ),
             html.H4('Scale'),
             spacer_short,
             dmc.Slider(
@@ -416,6 +429,7 @@ def fill_function(n_clicks, job_title, company, job_ad):
         State("include-code-samples", 'value'),
         State("include-courses", 'value'),
         State("include-publications", 'value'),
+        State("include-references", 'value'),
         State("scale_slider", 'value'),
     ],
     running=[
@@ -435,6 +449,7 @@ def compile_funciton(n_clicks, #compile_start
                      code_samples, #include-code-samples
                      courses, #include-courses
                      publications, #include-publications
+                     reference_letters,
                      scale #scale_slider
                      ):
     if display_graduation_dates == "Yes":
@@ -446,6 +461,7 @@ def compile_funciton(n_clicks, #compile_start
     # display_graduation_dates = display_graduation_dates == "Yes"
     code_samples = code_samples == "Yes"
     publications = publications == "Yes"
+    reference_letters = reference_letters == "Yes"
     path = compile_CV(
             CV_data=CV_data,
             job_title=job_title,
@@ -459,6 +475,7 @@ def compile_funciton(n_clicks, #compile_start
             courses = courses,
             display_graduation_dates = display_graduation_dates,
             publications = publications,
+            reference_letters=reference_letters,
             scale = scale)
     return (dmc.Notification(
         title="Success!",
