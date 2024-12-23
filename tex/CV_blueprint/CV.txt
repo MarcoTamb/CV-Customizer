@@ -2,7 +2,7 @@ MARCO TAMBURRO
 
 SUMMARY
 
-Data Science Analyst @ European Central Bank | Quantitative Finance Expert | Cambridge Math Grad 
+Statistician @ European Commission | Data Science Analyst @ European Central Bank | Quantitative Finance Expert | Cambridge Math Grad 
 Driving innovation in finance and data science with a passion for statistical analysis, machine learning, and time series forecasting.Key Achievements:
 - Streamlined ECB data operations with a Python dashboard, enhancing team efficiency.
 - Expert in economic time-series analysis and outlier detection.
@@ -12,6 +12,10 @@ Let's connect and explore how I can bring my expertise to your team!
 Naples, IT - Willing to relocate worldwide
 
 PROFESSIONAL EXPERIENCE
+
+European Commission - Eurostat · January 2025 - Present · Luxembourg, Luxembourg
+
+        Balance of Payments division 
 
 European Central Bank -Research Analyst September 2022 - August 2024 (end of contract, could not be renewed because of internal rules)
 

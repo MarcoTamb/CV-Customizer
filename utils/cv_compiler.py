@@ -16,12 +16,11 @@ def format_header_info (CV_data, entry_name):
 
 def get_personal_info(CV_data, current_title):
     first_piece=f"""\\makecvtitle
-\\vspace*{{-16mm}}
+\\vspace*{{-10mm}}
 \\begin{{center}}
 \\textbf{{{current_title}}}
 \\end{{center}}
-
-\\vspace*{{-4mm}}
+\\vspace*{{-8mm}}
 % phone numbers 
 \\begin{{center}}"""
     layout_subtitle = CV_data["personal_details"]["layout_subtitle"]

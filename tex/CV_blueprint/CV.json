@@ -2,13 +2,14 @@
     "personal_details": {
         "name": "Marco",
         "surname": "Tamburro",
-        "default_long_title":"ECB Data Science Analyst, Part III Math Graduate, Data Enthusiast", 
+        "default_long_title":"EC Statistician, Part III Math Graduate, Data Enthusiast", 
         "enthusiastic_about":[
             {"value": "Data Enthusiast", "label": "Data"},
             {"value": "Finance Enthusiast", "label": "Finance"},
+            {"value": "Economics Enthusiast", "label": "Economics"},
             {"value": "Statistics Enthusiast", "label": "Statistics"}
         ], 
-        "title_fstring":"ECB {title}, Part III Math Graduate, {topic}",
+        "title_fstring":"EC {title}, Part III Math Graduate, {topic}",
         "layout_subtitle":{
             "r": ["c1", "c2"],
             "c1": ["email", "phonenumber", "city"],
@@ -46,6 +47,24 @@
         }
     },
     "experience": {
+        "Eurostat":{
+            "personalize": false,
+            "job_titles":[
+                "Statistical Assistant",
+                "Statistician"
+            ],
+            "start_date":"01/2025",
+            "end_date":"Present",
+            "employer":[
+                "European Commission",
+                "European Commission - Eurostat",
+                "European Commission - DG ESTAT",
+                "Eurostat"
+            ],
+            "city":"Luxembourg, LU",
+            "description_fixed":"\\begin{itemize}[leftmargin=0.6cm, label={\\textbullet}]\n\\item Integrated Global Accounts and Balance of Payments\n\\end{itemize}",
+            "href": "https://commission.europa.eu/"
+            },
         "ECB":{
             "personalize": true,
             "job_titles":[

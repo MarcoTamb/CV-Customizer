@@ -209,7 +209,7 @@ def layout():
             spacer_short,
             dmc.Slider(
                 id="scale_slider",
-                min=0.8, max=1, step=0.001, value=0.915
+                min=0.8, max=1, step=0.001, value=0.9
             ),
             spacer_short,
             dmc.Center(
@@ -300,10 +300,13 @@ for job in jobs_form_generator.keys():
         ]
 )
 def update_all_jobs_bullets_store(timestamps, stores):
-    jobs=[job for job in jobs_form_generator.keys() if jobs_form_generator[job]["bullet_points"]]
-    return {
-        job: stores[i] for i, job in enumerate(jobs)
+    #print(stores)
+    jobs=[job for job in jobs_form_generator.keys() ]
+    jobs_store =  {
+        job: stores[i] for i, job in enumerate(jobs) if jobs_form_generator[job]["bullet_points"]
     }
+    #print(jobs_store)
+    return jobs_store
 
 
 @app.callback(
@@ -450,13 +453,13 @@ def compile_funciton(n_clicks, #compile_start
             long_title=long_title, 
             adapted_titles = adapted_titles,
             adapted_employers = adapted_employers,
-            adapted_bullet_points= adapted_bullet_points,
-            summary_text=summary, 
-            code_samples=code_samples,
-            courses=courses,
-            display_graduation_dates=display_graduation_dates,
-            publications=publications,
-            scale=scale)
+            adapted_bullet_points = adapted_bullet_points,
+            summary_text = summary, 
+            code_samples = code_samples,
+            courses = courses,
+            display_graduation_dates = display_graduation_dates,
+            publications = publications,
+            scale = scale)
     return (dmc.Notification(
         title="Success!",
         id="compiled-notify",
